@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.kenyansa.expensetracker.R
 import com.kenyansa.expensetracker.ui.theme.Equity
 
@@ -70,6 +71,16 @@ fun HomeScreen(){
                     top.linkTo(nameRow.bottom)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                })
+
+            TransactionList(modifier = Modifier
+                .fillMaxWidth()
+                .constrainAs(list) {
+                    top.linkTo(card.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                    height = Dimension.fillToConstraints
                 })
         }
     }
@@ -124,18 +135,50 @@ fun CardItem(modifier: Modifier){
                 image = R.drawable.ic_expense
             )
         }
+
     }
 }
 
 
 @Composable
-fun TransactionList(
-    modifier: Modifier){
-    Column(modifier = Modifier) {
-        Box(modifier = Modifier.fillMaxWidth()){
+fun TransactionList(modifier: Modifier){
+    Column(modifier = modifier.padding(horizontal = 16.dp)) {
+        Box(modifier = Modifier.fillMaxWidth()) {
             Text(text = "Recent Transactions", fontSize = 20.sp)
-            Text(text = "See all", fontSize = 16.sp, color = Color.White)
+            Text(
+                text = "See all",
+                fontSize = 16.sp,
+                modifier = Modifier.align(Alignment.CenterEnd)
+            )
         }
+        TransactionItem(
+            title = "Netflix",
+            amount = "- Kshs 7,000.00",
+            icon = R.drawable.ic_netflix,
+            date = "Today",
+            color = Color.Red
+        )
+        TransactionItem(
+            title = "Paypal",
+            amount = "- Kshs 70,000.00",
+            icon = R.drawable.ic_paypal,
+            date = "Today",
+            color = Color.Red
+        )
+        TransactionItem(
+            title = "Upwork",
+            amount = "- Kshs 100,000.00",
+            icon = R.drawable.ic_upwork,
+            date = "Today",
+            color = Color.Red
+        )
+        TransactionItem(
+            title = "Starbucks",
+            amount = "- Kshs 5,000.00",
+            icon = R.drawable.ic_starbucks,
+            date = "Today",
+            color = Color.Blue
+        )
     }
 
 }
@@ -154,6 +197,32 @@ fun CardRowItem(modifier: Modifier, title: String, amount: String, image: Int) {
         }
         Text(text = amount, fontSize = 20.sp, color = Color.White)
     }
+}
+
+@Composable
+fun TransactionItem(title: String, amount: String, icon: Int, date: String, color: Color){
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(vertical = 8.dp)){
+    Row {
+        Image(
+            painter = painterResource(id = icon), contentDescription = null,
+            modifier = Modifier.size(50.dp)
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Column {
+            Text(text = title, fontSize = 16.sp)
+            Text(text = date, fontSize = 12.sp)
+        }
+    }
+    Text(
+        text = amount,
+        fontSize = 20.sp,
+        modifier = Modifier.align(Alignment.CenterEnd),
+        color = color
+    )
+  }
 }
 
 

@@ -1,4 +1,4 @@
-package com
+package com.kenyansa.expensetracker
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.kenyansa.expensetracker.R
 import com.kenyansa.expensetracker.ui.theme.Equity
+import com.kenyansa.expensetracker.widget.ExpenseTextView
 
 @Composable
 fun HomeScreen(){
@@ -53,8 +53,8 @@ fun HomeScreen(){
                     }
             ){
                 Column {
-                    Text(text = "Good Afternoon", fontSize = 16.sp, color = Color.White)
-                    Text(text = "KenyansaCodes",
+                    ExpenseTextView(text = "Good Afternoon", fontSize = 16.sp, color = Color.White)
+                    ExpenseTextView(text = "KenyansaCodes",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
@@ -102,8 +102,8 @@ fun CardItem(modifier: Modifier){
                 .fillMaxWidth()
                 .weight(1f)) {
             Column (modifier = Modifier.align(Alignment.CenterStart)) {
-                Text(text = "Total Balance", fontSize = 16.sp, color = Color.White)
-                Text(
+                ExpenseTextView(text = "Total Balance", fontSize = 16.sp, color = Color.White)
+                ExpenseTextView(
                     text = "Kshs 500,000",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -144,8 +144,8 @@ fun CardItem(modifier: Modifier){
 fun TransactionList(modifier: Modifier){
     Column(modifier = modifier.padding(horizontal = 16.dp)) {
         Box(modifier = Modifier.fillMaxWidth()) {
-            Text(text = "Recent Transactions", fontSize = 20.sp)
-            Text(
+            ExpenseTextView(text = "Recent Transactions", fontSize = 20.sp)
+            ExpenseTextView(
                 text = "See all",
                 fontSize = 16.sp,
                 modifier = Modifier.align(Alignment.CenterEnd)
@@ -160,24 +160,24 @@ fun TransactionList(modifier: Modifier){
         )
         TransactionItem(
             title = "Paypal",
-            amount = "- Kshs 70,000.00",
+            amount = " Kshs 70,000.00",
             icon = R.drawable.ic_paypal,
             date = "Today",
-            color = Color.Red
+            color = Color.Green
         )
         TransactionItem(
             title = "Upwork",
-            amount = "- Kshs 100,000.00",
+            amount = " Kshs 100,000.00",
             icon = R.drawable.ic_upwork,
             date = "Today",
-            color = Color.Red
+            color = Color.Green
         )
         TransactionItem(
             title = "Starbucks",
             amount = "- Kshs 5,000.00",
             icon = R.drawable.ic_starbucks,
             date = "Today",
-            color = Color.Blue
+            color = Color.Red
         )
     }
 
@@ -195,7 +195,7 @@ fun CardRowItem(modifier: Modifier, title: String, amount: String, image: Int) {
             Text(text = title, fontSize = 16.sp, color = Color.White)
 
         }
-        Text(text = amount, fontSize = 20.sp, color = Color.White)
+        ExpenseTextView(text = amount, fontSize = 20.sp, color = Color.White)
     }
 }
 
@@ -212,11 +212,11 @@ Box(
         )
         Spacer(modifier = Modifier.size(8.dp))
         Column {
-            Text(text = title, fontSize = 16.sp)
-            Text(text = date, fontSize = 12.sp)
+            ExpenseTextView(text = title, fontSize = 16.sp)
+            ExpenseTextView(text = date, fontSize = 12.sp)
         }
     }
-    Text(
+    ExpenseTextView(
         text = amount,
         fontSize = 20.sp,
         modifier = Modifier.align(Alignment.CenterEnd),

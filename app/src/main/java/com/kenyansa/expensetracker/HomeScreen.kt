@@ -212,7 +212,7 @@ Box(
         )
         Spacer(modifier = Modifier.size(8.dp))
         Column {
-            ExpenseTextView(text = title, fontSize = 16.sp)
+            ExpenseTextView(text = title, fontSize = 16.sp, fontWeight = FontWeight.Medium)
             ExpenseTextView(text = date, fontSize = 12.sp)
         }
     }
@@ -220,7 +220,8 @@ Box(
         text = amount,
         fontSize = 20.sp,
         modifier = Modifier.align(Alignment.CenterEnd),
-        color = color
+        color = color,
+        fontWeight = FontWeight.SemiBold
     )
   }
 }

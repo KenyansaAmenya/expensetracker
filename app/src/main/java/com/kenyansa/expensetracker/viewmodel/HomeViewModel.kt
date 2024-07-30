@@ -3,6 +3,7 @@ package com.kenyansa.expensetracker.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.kenyansa.expensetracker.R
 import com.kenyansa.expensetracker.data.ExpenseDataBase
 import com.kenyansa.expensetracker.data.dao.ExpenseDao
 import com.kenyansa.expensetracker.data.model.ExpenseEntity
@@ -42,6 +43,18 @@ class HomeViewModel(dao: ExpenseDao) : ViewModel() {
             }
         }
         return "$ ${total}"
+    }
+
+    fun getItemIcon(item:ExpenseEntity): Int{
+        if (item.category == "Paypal") {
+            return R.drawable.ic_paypal
+        } else if (item.category == "Netflix") {
+            return R.drawable.ic_netflix
+        } else if (item.category == "Starbucks") {
+            return R.drawable.ic_starbucks
+        }
+
+            return R.drawable.ic_upwork
     }
 }
 

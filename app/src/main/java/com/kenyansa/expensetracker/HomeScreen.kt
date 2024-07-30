@@ -99,7 +99,8 @@ fun HomeScreen(){
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                     height = Dimension.fillToConstraints
-                }, list = state.value)
+                }, list = state.value, viewModel
+            )
         }
     }
 }
@@ -156,10 +157,8 @@ fun CardItem(modifier: Modifier, balance: String, expenses: String, income: Stri
 
     }
 }
-
-
 @Composable
-fun TransactionList(modifier: Modifier, list: List<ExpenseEntity>){
+fun TransactionList(modifier: Modifier, list: List<ExpenseEntity>, viewModel: HomeViewModel){
     LazyColumn(modifier = modifier.padding(horizontal = 16.dp)) {
        item {
            Box(modifier = Modifier.fillMaxWidth()) {
@@ -175,7 +174,7 @@ fun TransactionList(modifier: Modifier, list: List<ExpenseEntity>){
             TransactionItem(
                 title = item.title,
                 amount = item.amount.toString(),
-                icon = if (item.type == "Income") R.drawable.ic_paypal else R.drawable.ic_netflix,
+                icon = viewModel.getItemIcon(item),
                 date = item.date.toString(),
                 color = if (item.type == "Income") Color.Green else Color.Red
             )

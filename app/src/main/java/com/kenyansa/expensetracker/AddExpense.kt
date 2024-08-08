@@ -159,13 +159,14 @@ fun DataForm(modifier: Modifier){
                 color = Color.White,)
         }
     }
-    if (dateDialogVisibility.value)
-    ExpenseDatePickerDialog(onDateSelected = {
-        date.value = it
-        dateDialogVisibility.value = false
-          }, onDismiss = {
+    if (dateDialogVisibility.value) {
+        ExpenseDatePickerDialog(onDateSelected = {
+            date.value = it
             dateDialogVisibility.value = false
-    })
+        }, onDismiss = {
+            dateDialogVisibility.value = false
+        })
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
